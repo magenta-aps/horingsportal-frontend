@@ -1,0 +1,22 @@
+# Common playbook.
+#
+# Contains the common parts for development and production setup.
+---
+
+- hosts: all
+
+  become: true
+  become_method: sudo
+  become_user: root
+
+  pre_tasks:
+    - name: Update apt cache (if old)
+      apt: update_cache=yes cache_valid_time=84600
+      changed_when: false
+
+  roles:
+  - git
+  - geerlingguy.nodejs
+  # - build_frontend
+
+...
