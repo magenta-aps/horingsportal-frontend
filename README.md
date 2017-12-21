@@ -1,6 +1,6 @@
 # horingsportal-frontend
 
-> A GUI for an OS2 Horingsportal prototype
+> Frontend GUI for OS2 horingsportal prototype
 
 ## Build Setup
 
