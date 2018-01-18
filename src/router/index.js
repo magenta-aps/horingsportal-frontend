@@ -1,14 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Login from '@/components/Login'
+import Logout from '@/components/Logout'
 import Frontpage from '@/components/Frontpage'
-import ReviewCreate1 from '@/components/ReviewCreate1'
-import ReviewCreate2 from '@/components/ReviewCreate2'
+import ReviewCreate from '@/components/ReviewCreate'
+import ReviewEdit from '@/components/ReviewEdit'
 import Review from '@/components/Review'
 import ReviewOpen from '@/components/ReviewOpen'
 import ReviewAnswered from '@/components/ReviewAnswered'
 import ReviewConcluded from '@/components/ReviewConcluded'
 import MyReviews from '@/components/MyReviews'
-import ReviewsCurrent from '@/components/ReviewsCurrent'
+import ReviewsInProgress from '@/components/ReviewsInProgress'
 import ReviewsConcluded from '@/components/ReviewsConcluded'
 
 Vue.use(Router)
@@ -21,17 +23,27 @@ export default new Router({
       component: Frontpage
     },
     {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/logout',
+      name: 'Logout',
+      component: Logout
+    },
+    {
       path: '/review/create',
-      name: 'ReviewCreate1',
-      component: ReviewCreate1
+      name: 'ReviewCreate',
+      component: ReviewCreate
     },
     {
-      path: '/review/create-part2',
-      name: 'ReviewCreate2',
-      component: ReviewCreate2
+      path: '/review/:id/edit',
+      name: 'ReviewEdit',
+      component: ReviewEdit
     },
     {
-      path: '/review/:sbsys_no',
+      path: '/review/:id',
       name: 'Review',
       component: Review
     },
@@ -57,8 +69,8 @@ export default new Router({
     },
     {
       path: '/reviews/current',
-      name: 'ReviewsCurrent',
-      component: ReviewsCurrent
+      name: 'ReviewsInProgress',
+      component: ReviewsInProgress
     },
     {
       path: '/reviews/concluded',

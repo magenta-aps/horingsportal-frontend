@@ -6,14 +6,7 @@
 
         <h1>Aktuelle høringer</h1>
 
-        <ul>
-            <li v-for="r in reviews">
-                <router-link :to="`/review/${ r.sbsys_no }`">{{ r.title }}</router-link>
-                <div style="margin: 0">
-                    <strong>Resume:</strong> {{ r.abstract }}
-                </div>
-            </li>
-        </ul>
+        <review-list></review-list>
 
         <form>
             <input type="text">
@@ -28,19 +21,18 @@
 
     import Http from '../services/Http'
     import Navigation from './Navigation'
+    import ReviewList from './ReviewList'
 
     export default {
-        name: 'CurrentHorings',
+        name: 'ReviewsInProgress',
         components: {
-            'navigation': Navigation
+            'navigation': Navigation,
+            'review-list': ReviewList
         },
         data () {
             return {
-                reviews: []
+                hest: 'hest'
             }
-        },
-        created: function() {
-            this.reviews = Http.get('/reviews/current')
         }
     }
 

@@ -38,19 +38,26 @@
     }
 
     label {
-        padding-right: .5rem;
+        display: block;
     }
 
     input[type="text"],
+    input[type="password"],
     input[type="date"] {
         border: solid 1px #000;
         background-color: #eee;
         padding: .5rem;
+        margin: 0;
     }
 
     textarea {
         width: 100%;
         min-height: 5rem;
+        margin: 0;
+    }
+
+    select {
+        margin: 0;
     }
 
     .page {
@@ -58,7 +65,8 @@
     }
 
     button,
-    .btn {
+    .btn,
+    input[type="submit"] {
         background-color: #fff;
         border: solid 1px #000;
         color: #000;

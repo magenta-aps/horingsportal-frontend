@@ -3,9 +3,7 @@
 
         <navigation></navigation>
 
-        <h1>Høring hos modtager</h1>
-
-        <h2>{{ review.title }}</h2>
+        <h1>Høring: {{ review.title }}</h1>
         
         <accordion>
             <label for="write-abstract" slot="header">Resumé</label>
@@ -52,7 +50,7 @@
 
     import Accordion from './Accordion'
     import Navigation from './Navigation'
-    import Http from '../services/Http'
+    import axios from '../services/Http'
 
     export default {
         name: 'Frontpage',
@@ -65,13 +63,27 @@
                 review: {}
             }
         },
+        methods: {
+            getReview: function(review_id) {
+                axios.get( `/reviews/${ review_id }` )
+                    .then(response => {
+                        this.review = response
+                    })
+                    .catch(err => {
+                        console.log('Could not get review information:')
+                        console.log(err)
+                    })
+            }
+        },
         watch: {
             '$route': function(params) {
-                this.review = Http.getReview( params.sbsys_no )[0]
+                this.getReview(params.id)
             }
         },
         created: function() {
-            this.review = Http.getReview( this.$route.params.sbsys_no )[0]
+            
+            this.getReview(this.$route.params.id)
+
         }
     }
 

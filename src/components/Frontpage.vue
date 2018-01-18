@@ -1,8 +1,9 @@
 <template>
 
     <div class="page">
+        <navigation></navigation>
         <h1>Digital Høring</h1>
-        <nav>
+        <nav class="index-nav">
             <router-link to="/review/create" class="btn">Opret høring</router-link>
             <router-link to="/reviews/current" class="btn">Aktuelle høringer</router-link>
             <router-link to="/reviews/mine" class="btn">Mine høringer</router-link>
@@ -18,8 +19,13 @@
 
 <script>
 
+    import Navigation from './Navigation'
+
     export default {
         name: 'Frontpage',
+        components: {
+            'navigation': Navigation
+        },
         data () {
             return {
                 msg: 'hest'
@@ -36,7 +42,7 @@
     width: 20rem;
   }
 
-  nav {
+  .index-nav {
     display: flex;
     flex-flow: column nowrap;
   }
