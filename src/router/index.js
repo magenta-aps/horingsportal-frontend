@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import Logout from '@/components/Logout'
-import Frontpage from '@/components/Frontpage'
+import Overview from '@/components/Overview'
 import ReviewCreate from '@/components/ReviewCreate'
 import ReviewEdit from '@/components/ReviewEdit'
 import Review from '@/components/Review'
@@ -19,13 +19,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Frontpage',
-      component: Frontpage
-    },
-    {
-      path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/overview',
+      name: 'Overview',
+      component: Overview
     },
     {
       path: '/logout',

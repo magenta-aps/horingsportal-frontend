@@ -1,10 +1,12 @@
 <template>
 
     <nav class="global-nav">
-        <router-link to="/" >Til forside</router-link>
+
+        <router-link to="/overview" v-if="$route.path !== '/overview'">Til forside</router-link>
         <p v-if="user" class="global-nav-user">
-            Hej {{ user.first_name }} <router-link to="/logout" >Log ud</router-link>
+            Hej {{ user.full_name }}
         </p>
+        <router-link to="/logout" >Log ud</router-link>
     </nav>
 
 </template>

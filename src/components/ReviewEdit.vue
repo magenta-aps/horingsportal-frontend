@@ -65,7 +65,7 @@
 <script>
 
     import Accordion from './Accordion'
-    import Http from '../services/Http'
+    import axios from '../services/Http'
     import Navigation from './Navigation'
 
     export default {

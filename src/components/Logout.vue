@@ -3,7 +3,7 @@
     <div class="page">
         <h1>Digital Høring</h1>
         <p><strong>Du er blevet logget ud</strong></p>
-        <router-link to="/login">Log ind</router-link>
+        <router-link to="/">Log ind</router-link>
     </div>
 
 </template>
@@ -14,7 +14,7 @@
         name: 'Logout',
         data () {
             return {
-                msg: 'hest'
+                
             }
         }
     }

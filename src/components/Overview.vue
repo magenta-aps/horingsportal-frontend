@@ -22,7 +22,7 @@
     import Navigation from './Navigation'
 
     export default {
-        name: 'Frontpage',
+        name: 'Overview',
         components: {
             'navigation': Navigation
         },

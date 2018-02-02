@@ -3,26 +3,26 @@
 
         <navigation></navigation>
 
-        <h1>Høring: {{ review.title }}</h1>
+        <h1>Høring: {{ review.data_title }}</h1>
         
         <accordion>
             <label for="write-abstract" slot="header">Resumé</label>
             <div slot="content">
-                {{ review.abstract }}
+                {{ review.data_abstract }}
             </div>
         </accordion>
 
         <accordion>
             <label for="write-text" slot="header">Tekst</label>
             <div slot="content">
-                {{ review.text }}
+                {{ review.data_text }}
             </div>
         </accordion>
 
         <accordion>
             <label for="write-complaint" slot="header">Klagevejledning</label>
             <div slot="content">
-                {{ review.complaint_guide }}
+                {{ review.data_complaint_guide }}
             </div>
         </accordion>
 
@@ -30,7 +30,7 @@
             <label for="write-guide" slot="header">Giv din mening til kende/dit høringssvar</label>
             <div slot="content">
             <fieldset>
-                {{ review.answer_guide }}
+                {{ review.data_answer_guide }}
                 <textarea id="write-guide" type="text" placeholder="Dit høringssvar"></textarea>
             </fieldset>
             </div>
@@ -63,27 +63,24 @@
                 review: {}
             }
         },
+        watch: {
+            '$route': function() {
+                this.getReview()
+            }
+        },
         methods: {
-            getReview: function(review_id) {
-                axios.get( `/reviews/${ review_id }` )
-                    .then(response => {
-                        this.review = response
+            getReview: function() {
+                axios.get(`/reviews/${this.$route.params.id}/`)
+                    .then(res => {
+                        this.review = res.data
                     })
                     .catch(err => {
-                        console.log('Could not get review information:')
                         console.log(err)
                     })
             }
         },
-        watch: {
-            '$route': function(params) {
-                this.getReview(params.id)
-            }
-        },
         created: function() {
-            
-            this.getReview(this.$route.params.id)
-
+            this.getReview()
         }
     }
 
@@ -91,6 +88,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 
 
 </style>

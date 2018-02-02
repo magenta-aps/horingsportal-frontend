@@ -1,12 +1,11 @@
 <template>
 
     <div>
-
         <ul>
             <li v-for="r in reviews">
-                <router-link :to="`/review/${ r.id }`">{{ r.title }}</router-link>
+                <router-link :to="`/review/${ r.id }`">{{ r.data_title }}</router-link>
                 <div style="margin: 0">
-                    <strong>Resume:</strong> {{ r.abstract }}
+                    <strong>Resume:</strong> {{ r.data_abstract }}
                 </div>
             </li>
         </ul>
@@ -24,13 +23,28 @@
         name: 'ReviewList',
         data () {
             return {
-                horse: 'horse'
+                reviews: []
             }
         },
-        computed: {
-            reviews: function() {
-                return this.$store.getters.reviews
+        watch: {
+            '$route': function() {
+                this.getReviews()
             }
+        }, 
+        methods: {
+            getReviews: function() {
+                axios.get('/reviews/')
+                    .then(res => {
+                        this.reviews = res.data
+                    })
+                    .catch(err => {
+                        console.log('Could not fetch reviews')
+                        console.log(err)
+                    })
+            }
+        },
+        created: function() {
+            this.getReviews()
         }
     }
 

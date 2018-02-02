@@ -35,7 +35,7 @@
             logIn: function(ev) {
                 ev.preventDefault()
                 this.$store.dispatch('login', {user: this.username, passwd: this.password})
-                this.$router.push('/')
+                this.$router.push('/overview')
                 this.resetForm()
             },
             resetForm: function() {

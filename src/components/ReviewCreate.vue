@@ -122,6 +122,7 @@
 
     import Accordion from './Accordion'
     import Navigation from './Navigation'
+    import axios from '../services/Http'
 
     export default {
         name: 'Frontpage',
@@ -132,25 +133,36 @@
         data () {
             return {
                 review: {
-                    template: null,
+                    id: Math.floor(Math.random()*1000000),
+                    meta_template: null,
                     sbsys_no: Math.floor(Math.random()*1000000),
-                    public: false,
-                    groups: null,
-                    sort_option: null,
-                    deadline_answer: null,
-                    deadline_comment: null,
-                    deadline_conclude: null,
-                    deadline_process: null,
-                    deadline_review: null,
-                    contact: null,
-                    channels: null
+                    status: 'draft',
+                    meta_public: false,
+                    meta_groups: null,
+                    meta_sort_option: null,
+                    meta_deadline_answer: null,
+                    meta_deadline_comment: null,
+                    meta_deadline_conclude: null,
+                    meta_deadline_process: null,
+                    meta_deadline_review: null,
+                    meta_contact: null,
+                    meta_channels: null,
+                    author_id: this.$store.getters.user.id,
+                    author_name: this.$store.getters.user.name,
+                    data_title: `Kladde ${ new Date().toLocaleString }`
                 }
             }
         },
         methods: {
             proceed: function() {
-                this.$store.commit('storePartialReview', this.review)
-                this.$router.push('/review/create-part2')
+                axios.post('/reviews', this.review).then(res => {
+                    console.log('posted new review')
+                    console.log(res)
+                    return res.data
+                }).catch(err => {
+                    console.log(err)
+                })
+                
             }
         }
     }
